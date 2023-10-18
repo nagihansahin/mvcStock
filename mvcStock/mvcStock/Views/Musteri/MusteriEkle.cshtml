@@ -1,0 +1,36 @@
+﻿@model mvcStock.Models.Entity.MusteriTbl
+@{
+    ViewBag.Title = "MusteriEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+            <label>Müşteri Adı:</label>
+            <input type="text" class="form-control" name="MusteriAd" />
+            <label>Müşteri Soyad:</label>
+            <input type="text" class="form-control" name="MusteriSoyad" />
+        </div>*@
+    <div>
+        <label>Müşteri Adı</label>
+        @Html.TextBoxFor(m => m.musteriAd, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.musteriAd, "", new { @style = "color:red" })
+    </div>
+    <br />
+    <div>
+        <label>Müşteri Soyad</label>
+        @Html.TextBoxFor(m => m.musteriSoyad, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.musteriSoyad, "", new { @style = "color:red" })
+    </div>
+    <div class="text-center">
+        <button style="margin-top:15px;" class="btn btn-info" id="musteriBtn"><i class="fa-solid fa-check"></i> Ekle</button>
+    </div>
+    <script>
+        $('#musteriBtn').click(function () {
+            alert("Müşteri Başarıyla Eklendi.");
+        });
+    </script>
+</form>
+

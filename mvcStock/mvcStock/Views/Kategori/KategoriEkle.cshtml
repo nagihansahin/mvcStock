@@ -1,0 +1,29 @@
+﻿@model mvcStock.Models.Entity.KategoriTbl
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+        <label>Kategori Adı:</label>
+        <input type="text" class="form-control" name="KategoriAd"/>
+    </div>*@
+
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m=>m.kategoriAd, new {@class="form-control" })
+        <br />
+        @Html.ValidationMessageFor(m=>m.kategoriAd,"", new {@style="color:red"})
+    </div>
+
+    <div class="text-center">
+        <button style="margin-top:15px;" class="btn btn-info" id="kategoriBtn"><i class="fa-solid fa-check"></i> Kategori Ekle</button>
+    </div>
+    <script>
+        $('#kategoriBtn').click(function () {
+            alert("Kategori Başarıyla Eklendi.");
+        });
+    </script>
+</form>
+

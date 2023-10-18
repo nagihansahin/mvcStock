@@ -1,0 +1,48 @@
+﻿@using mvcStock.Models.Entity;
+@using PagedList;
+@using PagedList.Mvc;
+
+@*@model List<TblUrunler>*@
+@model PagedList.IPagedList<TblUrunler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün ID</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Markası</th>
+        <th>Ürün Kategori</th>
+        <th>Ürün Fiyat</th>
+        <th>Ürün Stok</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @foreach (var urn in Model)
+        {
+            <tr>
+                <td>@urn.UrunID</td>
+                <td>@urn.UrunAd</td>
+                <td>@urn.UrunMarka</td>
+                @*<td>@urn.UrunKategori</td>*@
+                <td>
+                    @urn.KategoriTbl.kategoriAd
+                </td>
+                <td>@urn.UrunFiyat</td>
+                <td>@urn.UrunStok</td>
+                <td><a href="/Urun/Sil/@urn.UrunID" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Sil</a></td>
+                <td><a href="/Urun/UrunGetir/@urn.UrunID" class="btn btn-success"><i class="fa-regular fa-pen-to-square"></i> Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+
+<div class="text-center">
+    <a href="/Urun/UrunEkle" class="btn btn-primary"><i class="fa-solid fa-plus"></i>  Ürün Ekle</a>
+</div>

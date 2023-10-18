@@ -1,0 +1,46 @@
+﻿@using mvcStock.Models.Entity
+@*@using PagedList;
+@using PagedList.Mvc;*@
+
+@model List<KategoriTbl>
+@*@model PagedList.IPagedList<KategoriTbl>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using (Html.BeginForm("Index", "Kategori", FormMethod.Get))
+            {
+                <p>
+                    Aranacak Kategori Adı: @Html.TextBox("p")
+                    <input type="submit" value="Ara"/>
+                </p>
+            }
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Kategori ID</th>
+            <th>Kategori Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            <th>Alertli Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.kategoriID</th>
+                <td>@ktgr.kategoriAd</td>
+                <td><a href="/Kategori/Sil/@ktgr.kategoriID" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Sil</a></td>
+                <td><a href="/Kategori/KategoriGetir/@ktgr.kategoriID" class="btn btn-success"><i class="fa-regular fa-pen-to-square"></i> Güncelle</a></td>
+                <td>@Html.ActionLink("Sil Butonu", "Sil", new { id = ktgr.kategoriID }, new { @class = "btn btn-warning", onclick = "return confirm('Silme istediğinize enin misiniz?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))*@
+
+<div class="text-center">
+    <a href="/Kategori/KategoriEkle/" class="btn btn-primary "><i class="fa-solid fa-plus"></i>  Kategori Ekle</a>
+</div>
+

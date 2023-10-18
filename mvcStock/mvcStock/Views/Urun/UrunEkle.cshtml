@@ -1,0 +1,42 @@
+﻿@*dorpdownlist ile getirme işlemi yapacağım için*@
+@model mvcStock.Models.Entity.TblUrunler
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Ürün Adı:</label>
+        <input type="text" class="form-control" name="UrunAd" required placeholder="Ürün Adı Giriniz..." maxlength="50" />
+    </div>
+    <br />
+    <div>
+        <label>Kategori Seçiniz</label>
+        @Html.DropDownListFor(m => m.KategoriTbl.kategoriID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        @*<input type="text" class="form-control" name="Urunkategori" />*@
+    </div>
+    <br />
+    <div>
+        <label>Ürün Fiyatı:</label>
+        <input type="text" class="form-control" name="UrunFiyat" required placeholder="Ürün Fiyatı Giriniz..." />
+    </div>
+    <br />
+    <div>
+        <label>Ürün Marka:</label>
+        <input type="text" class="form-control" name="UrunMarka" required placeholder="Ürün Markasını Giriniz..." maxlength="50" />
+    </div>
+    <br />
+    <div>
+        <label>Stok Adet:</label>
+        <input type="text" class="form-control" name="UrunStok" required placeholder="Ürün Stok Adetini Giriniz..." />
+    </div>
+    <div class="text-center">
+        <button style="margin-top:15px;" class="btn btn-info" id="urunBtn"><i class="fa-solid fa-check"></i> Ekle</button>
+    </div>
+    <script>
+        $('#urunBtn').click(function () {
+            alert("Ürün Başarıyla Eklendi.");
+        });
+    </script>
+</form>
